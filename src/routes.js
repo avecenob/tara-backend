@@ -1,3 +1,5 @@
+const registerHandler = require('./handler/registerHandler');
+
 const routes = [
   {
     method: 'GET',
@@ -7,6 +9,11 @@ const routes = [
         message: 'Hello, Wolrd!',
       };
     },
+  },
+  {
+    method: 'POST',
+    path: '/register',
+    handler: registerHandler,
   },
 ];
 
