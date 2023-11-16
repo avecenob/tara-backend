@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const Jwt = require('@hapi/jwt');
 const routes = require('./routes');
 
 const init = async () => {
@@ -11,6 +12,15 @@ const init = async () => {
       },
     },
   });
+
+  await server.register(Jwt);
+
+  // server.auth.strategy('jwt_strategy', 'jwt', {
+  //   keys: 'so_secret_keys',
+  //   verify: {
+  //     aud: ''
+  //   }
+  // });
 
   server.route(routes);
 
