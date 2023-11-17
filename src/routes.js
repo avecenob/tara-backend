@@ -1,5 +1,5 @@
-const loginHandler = require('./handler/loginHandler');
-const registerHandler = require('./handler/registerHandler');
+const loginHandler = require('./handler/login');
+const registerHandler = require('./handler/register');
 const routes = [
   {
     method: 'GET',

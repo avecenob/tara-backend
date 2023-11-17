@@ -1,7 +1,6 @@
 const {nanoid} = require('nanoid');
 const bcrypt = require('bcrypt');
 const User = require('../model/user');
-// const Connection = require('../config/database');
 
 const registerHandler = async (request, h) => {
   const {
