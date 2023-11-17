@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 const routes = require('./routes');
+const {validateToken} = require('./util/token');
 
 const init = async () => {
   const server = Hapi.server({
@@ -15,12 +16,16 @@ const init = async () => {
 
   await server.register(Jwt);
 
-  // server.auth.strategy('jwt_strategy', 'jwt', {
-  //   keys: 'so_secret_keys',
-  //   verify: {
-  //     aud: ''
-  //   }
-  // });
+  server.auth.strategy('jwt_auth', 'jwt', {
+    keys: 'some_cool_secret',
+    verify: {
+      aud: 'tara-user',
+      iss: 'tara-backend',
+      sub: false,
+      maxAgeSec: 14400,
+    },
+    validate: validateToken,
+  });
 
   server.route(routes);
 
