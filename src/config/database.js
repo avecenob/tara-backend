@@ -2,14 +2,20 @@ const Sequelize = require('sequelize');
 
 /**
  * Change variables below with these values:
+ * DB_HOST      = database instance IP address
  * DB_NAME      = database name
  * DB_USER      = mysql user
  * DB_PASSWORD  = mysql user's password
  *
- * However, it is recommended to use variables/environment variables
+ * It is recommended to use environment variables
  */
+const DB_HOST = '';
+const DB_NAME = '';
+const DB_USER = '';
+const DB_PASSWORD = '';
+
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: '',
+  host: DB_HOST,
   port: '3306',
   dialect: 'mysql',
   logging: console.log,
