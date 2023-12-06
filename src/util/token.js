@@ -1,6 +1,8 @@
+require('dotenv').config({path: __dirname + '/../../.env'});
 const Jwt = require('@hapi/jwt');
+const {JWT_SECRET} = process.env;
 
-const secret = 'some_cool_secret';
+const secret = JWT_SECRET;
 
 const generateToken = (user) => {
   const token = Jwt.token.generate({
