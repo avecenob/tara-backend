@@ -1,23 +1,30 @@
+require('dotenv').config({path: __dirname + '/../../.env'});
 const Sequelize = require('sequelize');
 
 /**
  * Change variables below with these values:
- * DB_HOST      = database instance IP address
+ * DB_HOSTNAME  = database instance IP address
  * DB_NAME      = database name
- * DB_USER      = mysql user
+ * DB_USERNAME  = mysql user
  * DB_PASSWORD  = mysql user's password
+ * DB_DIALECT   = mysql
  *
  * It is recommended to use environment variables
  */
-const DB_HOST = '';
-const DB_NAME = '';
-const DB_USER = '';
-const DB_PASSWORD = '';
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  port: '3306',
-  dialect: 'mysql',
+const {
+  DB_DIALECT,
+  DB_HOSTNAME,
+  DB_NAME,
+  DB_PORT,
+  DB_USERNAME,
+  DB_PASSWORD,
+} = process.env;
+
+const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
+  host: DB_HOSTNAME,
+  port: DB_PORT,
+  dialect: DB_DIALECT,
   logging: console.log,
 });
 

@@ -1,3 +1,4 @@
+require('dotenv').config({path: __dirname + '../.env'});
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 const routes = require('./routes');
@@ -6,7 +7,7 @@ const {validateToken} = require('./util/token');
 const init = async () => {
   const server = Hapi.server({
     port: process.env.PORT || 8080,
-    host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
+    host: process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost',
     routes: {
       cors: {
         origin: ['*'],
@@ -17,10 +18,10 @@ const init = async () => {
   await server.register(Jwt);
 
   server.auth.strategy('jwt_auth', 'jwt', {
-    keys: 'some_cool_secret',
+    keys: process.env.JWT_SECRET,
     verify: {
-      aud: 'tara-user',
-      iss: 'tara-backend',
+      aud: process.env.JWT_AUDIENCE,
+      iss: process.env.JWT_ISSUER,
       sub: false,
       maxAgeSec: 14400,
     },

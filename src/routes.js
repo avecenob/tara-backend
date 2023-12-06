@@ -1,5 +1,6 @@
 const loginHandler = require('./handler/login');
 const registerHandler = require('./handler/register');
+const getTouristAttractionsHandler = require('./handler/tourist-attractions');
 const routes = [
   {
     method: 'GET',
@@ -19,6 +20,14 @@ const routes = [
     method: 'POST',
     path: '/login',
     handler: loginHandler,
+  },
+  {
+    method: 'GET',
+    path: '/tourist-attractions/{city}',
+    options: {
+      auth: 'jwt_auth',
+    },
+    handler: getTouristAttractionsHandler,
   },
   {
     method: 'GET',
