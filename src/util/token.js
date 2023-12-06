@@ -1,18 +1,21 @@
 require('dotenv').config({path: __dirname + '/../../.env'});
 const Jwt = require('@hapi/jwt');
-const {JWT_SECRET} = process.env;
-
-const secret = JWT_SECRET;
+const {
+  JWT_SECRET,
+  JWT_AUDIENCE,
+  JWT_ISSUER,
+  JWT_ALGORITHM,
+} = process.env;
 
 const generateToken = (user) => {
   const token = Jwt.token.generate({
-    aud: 'tara-user',
-    iss: 'tara-backend',
+    aud: JWT_AUDIENCE,
+    iss: JWT_ISSUER,
     user: user,
   },
   {
-    key: secret,
-    algorithm: 'HS256',
+    key: JWT_SECRET,
+    algorithm: JWT_ALGORITHM,
   },
   {
     ttlSec: 14400,
@@ -24,7 +27,7 @@ const generateToken = (user) => {
 const validateToken = (artifacts, request, h) => {
   let isValid;
 
-  if (artifacts.decoded.payload.aud === 'tara-user') {
+  if (artifacts.decoded.payload.aud === JWT_AUDIENCE) {
     isValid = true;
   } else {
     isValid = false;
