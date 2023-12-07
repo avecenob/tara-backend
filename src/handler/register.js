@@ -8,6 +8,17 @@ const registerHandler = async (request, h) => {
     email,
   } = request.payload;
 
+  const isRegistered = await User.findOne({where: {email: email}});
+
+  if (isRegistered) {
+    const response = h.response({
+      error: true,
+      message: 'Email already registered',
+    });
+    response.code(400);
+    return response;
+  }
+
   const password = bcrypt.hashSync(request.payload['password'], 10);
   const id = 'user-' + nanoid(16);
   const newUser = await User.create({
