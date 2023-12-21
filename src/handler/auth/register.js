@@ -1,6 +1,6 @@
 const {nanoid} = require('nanoid');
 const bcrypt = require('bcrypt');
-const User = require('../model/user');
+const User = require('../../model/user');
 
 const registerHandler = async (request, h) => {
   const {
@@ -22,7 +22,7 @@ const registerHandler = async (request, h) => {
   const password = bcrypt.hashSync(request.payload['password'], 10);
   const id = 'user-' + nanoid(16);
   const newUser = await User.create({
-    user_id: id,
+    id: id,
     name: name,
     email: email,
     password,

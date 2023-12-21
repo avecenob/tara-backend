@@ -4,7 +4,7 @@ const Connection = require('../config/database');
 const dbConnection = Connection.connect;
 
 const User = dbConnection.define('user', {
-  user_id: {
+  id: {
     type: DataTypes.STRING,
     primaryKey: true,
     allowNull: false,
@@ -20,6 +20,10 @@ const User = dbConnection.define('user', {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  tourism_preferences: {
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
 });
 

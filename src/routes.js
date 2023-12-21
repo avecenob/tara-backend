@@ -1,13 +1,28 @@
-const loginHandler = require('./handler/login');
-const registerHandler = require('./handler/register');
-const getTouristAttractionsHandler = require('./handler/tourist-attractions');
+const loginHandler = require('./handler/auth/login');
+const registerHandler = require('./handler/auth/register');
+const getTouristAttractionsHandler = require(
+    './handler/touristAttractions/touristAttractions');
+const setUserPreferencesHandler = require(
+    './handler/user/userPreferences');
 const routes = [
   {
     method: 'GET',
     path: '/',
     handler: () => {
       return {
-        message: 'Hello, Wolrd!',
+        message: 'Hello, World!',
+      };
+    },
+  },
+  {
+    method: 'GET',
+    path: '/home',
+    options: {
+      auth: 'jwt_auth',
+    },
+    handler: () => {
+      return {
+        message: 'Hello, World!',
       };
     },
   },
@@ -22,7 +37,7 @@ const routes = [
     handler: loginHandler,
   },
   {
-    method: 'GET',
+    method: 'POST',
     path: '/tourist-attractions/{city}',
     options: {
       auth: 'jwt_auth',
@@ -30,16 +45,12 @@ const routes = [
     handler: getTouristAttractionsHandler,
   },
   {
-    method: 'GET',
-    path: '/home',
+    method: 'POST',
+    path: '/users/user-preferences',
     options: {
       auth: 'jwt_auth',
     },
-    handler: () => {
-      return {
-        message: 'Hello, World!',
-      };
-    },
+    handler: setUserPreferencesHandler,
   },
 ];
 

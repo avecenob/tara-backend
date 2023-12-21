@@ -1,6 +1,6 @@
-const User = require('../model/user');
+const User = require('../../model/user');
 const bcrypt = require('bcrypt');
-const {generateToken} = require('../util/token');
+const {generateToken} = require('../../util/token');
 
 const loginHandler = async (request, h) => {
   const {email, password} = request.payload;
@@ -36,13 +36,13 @@ const loginHandler = async (request, h) => {
     return response;
   }
 
-  const token = generateToken(user.email);
+  const token = generateToken(user.id);
 
   const response = h.response({
     error: 'false',
     message: 'Login success',
     loginResult: {
-      userId: user.dataValues.user_id,
+      userId: user.dataValues.id,
       name: user.dataValues.name,
       token: token,
     },
