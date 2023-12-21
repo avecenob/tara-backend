@@ -32,4 +32,3 @@ const User = dbConnection.define('user', {
 })();
 
 module.exports = User;
-// console.log(module.exports);
