@@ -6,4 +6,3 @@ Dockerfile
 .git
 .gitignore
 .eslintrc.json
-src/ml
