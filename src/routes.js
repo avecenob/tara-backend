@@ -10,19 +10,19 @@ const routes = [
     path: '/',
     handler: () => {
       return {
-        message: 'Hello, World!',
+        message: 'API is up and running!',
       };
     },
   },
   {
     method: 'GET',
-    path: '/home',
+    path: '/test-auth',
     options: {
       auth: 'jwt_auth',
     },
     handler: () => {
       return {
-        message: 'Hello, World!',
+        message: 'Authentication strategy is working as expected!',
       };
     },
   },
