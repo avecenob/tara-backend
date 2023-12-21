@@ -57,7 +57,7 @@ const getTouristAttractionsHandler = async (request, h) => {
   const response = h.response({
     error: false,
     message: 'ok',
-    touristAttractionsList: placeList.map(placeResponseData),
+    touristAttractionList: placeList.map(placeResponseData),
   });
   response.code(200);
   return response;
