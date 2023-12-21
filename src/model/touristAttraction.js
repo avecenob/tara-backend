@@ -42,11 +42,11 @@ const TouristAttraction = dbConnection.define('tourist_attraction', {
     allowNull: false,
   },
   latitude: {
-    type: DataTypes.STRING,
+    type: DataTypes.DOUBLE,
     allowNull: false,
   },
   longitude: {
-    type: DataTypes.STRING,
+    type: DataTypes.DOUBLE,
     allowNull: false,
   },
 }, {
