@@ -3,6 +3,7 @@ const User = require('../../model/user');
 const TouristAttraction = require('../../model/touristAttraction');
 const axios = require('axios');
 
+// Callback function for placeList.map()
 const placeResponseData = (place) => {
   return {
     id: place.id,
@@ -22,11 +23,7 @@ const getTouristAttractionsHandler = async (request, h) => {
   const user = await User.findByPk(userId);
   const userPreferences = user.tourism_preferences;
 
-  const placeRecords = await TouristAttraction.findAll({
-    where: {
-      city: 'Yogyakarta',
-    },
-  });
+  const placeRecords = await TouristAttraction.findAll();
 
   if (!userPreferences) {
     const response = h.response({
@@ -52,7 +49,8 @@ const getTouristAttractionsHandler = async (request, h) => {
   });
 
   // eslint-disable-next-line max-len
-  const placeList = placeRecords.filter((placeRecord) => placeIds.includes(placeRecord.id));
+  const placeList = placeRecords.filter(
+      (placeRecord) => placeIds.includes(placeRecord.id));
 
   const response = h.response({
     error: false,

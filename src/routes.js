@@ -1,10 +1,12 @@
 const loginHandler = require('./handler/auth/login');
 const registerHandler = require('./handler/auth/register');
 const getTouristAttractionsHandler = require(
-    './handler/touristAttractions/touristAttractions');
+    './handler/place/touristAttractions');
 const setUserPreferencesHandler = require(
     './handler/user/userPreferences');
 const routes = [
+
+  // Default path allows API status check
   {
     method: 'GET',
     path: '/',
@@ -14,6 +16,8 @@ const routes = [
       };
     },
   },
+
+  // Authentication test
   {
     method: 'GET',
     path: '/test-auth',
