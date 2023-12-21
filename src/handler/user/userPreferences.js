@@ -26,7 +26,7 @@ const setUserPreferencesHandler = async (request, h) => {
 
   const response = h.response({
     error: false,
-    message: 'User preferences saved succesfully',
+    message: 'User preferences saved successfully',
   });
   response.code(200);
   return response;

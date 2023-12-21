@@ -39,7 +39,7 @@ const loginHandler = async (request, h) => {
   const token = generateToken(user.id);
 
   const response = h.response({
-    error: 'false',
+    error: false,
     message: 'Login success',
     loginResult: {
       userId: user.dataValues.id,
