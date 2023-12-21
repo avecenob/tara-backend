@@ -10,7 +10,7 @@ const placeResponseData = (place) => {
     description: place.description,
     photoUrl: place.photo,
     rating: place.rating,
-    total_user_rating: place.total_user_rating,
+    userRatingsTotal: place.total_user_rating,
     lat: place.latitude,
     lon: place.longitude,
   };
@@ -32,7 +32,7 @@ const getTouristAttractionsHandler = async (request, h) => {
     const response = h.response({
       error: false,
       message: 'ok',
-      touristAttractionsList: placeRecords.map(placeResponseData),
+      touristAttractionList: placeRecords.map(placeResponseData),
     });
     response.code(200);
     return response;
