@@ -3,7 +3,7 @@ const User = require('../../model/user');
 const TouristAttraction = require('../../model/touristAttraction');
 const axios = require('axios');
 
-// Callback function for placeList.map()
+// Callback function to map the response data
 const placeResponseData = (place) => {
   return {
     id: place.id,
@@ -23,6 +23,7 @@ const getTouristAttractionsHandler = async (request, h) => {
   const user = await User.findByPk(userId);
   const userPreferences = user.tourism_preferences;
 
+  // Load all Tourist Attractions records
   const placeRecords = await TouristAttraction.findAll();
 
   if (!userPreferences) {
@@ -44,10 +45,12 @@ const getTouristAttractionsHandler = async (request, h) => {
 
   const placeIds = [];
 
+  // Get recommended places' ids
   placeRecommendations['data'].forEach((place) => {
     placeIds.push(place.Place_Id);
   });
 
+  // Filter recommended places from placeRecords
   // eslint-disable-next-line max-len
   const placeList = placeRecords.filter(
       (placeRecord) => placeIds.includes(placeRecord.id));
@@ -55,7 +58,7 @@ const getTouristAttractionsHandler = async (request, h) => {
   const response = h.response({
     error: false,
     message: 'ok',
-    touristAttractionList: placeList.map(placeResponseData),
+    touristAttractionList: placeList.map(placeResponseData), // Mapped list
   });
   response.code(200);
   return response;
