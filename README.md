@@ -1,5 +1,5 @@
 # TARA Backend API
-This is the API of Bangkit 2023 H2 capstone project: TARA Project backend service.  
+This is the main backend service of Bangkit 2023 H2 capstone project: TARA. 
 
 To clone this repo:
 ```
