@@ -29,7 +29,7 @@ const getTouristAttractionsHandler = async (request, h) => {
   if (!userPreferences) {
     const response = h.response({
       error: false,
-      message: 'ok',
+      message: 'Tourist Attraction List fetched successfully',
       touristAttractionList: placeRecords.map(placeResponseData),
     });
     response.code(200);
@@ -57,7 +57,7 @@ const getTouristAttractionsHandler = async (request, h) => {
 
   const response = h.response({
     error: false,
-    message: 'ok',
+    message: 'Tourist Attraction List fetched successfully',
     touristAttractionList: placeList.map(placeResponseData), // Mapped list
   });
   response.code(200);
